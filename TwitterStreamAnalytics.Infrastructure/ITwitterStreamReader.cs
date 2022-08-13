@@ -1,25 +1,41 @@
 ﻿using Tweetinvi;
+using Tweetinvi.Streaming.V2;
 
 namespace TwitterStreamAnalytics.Infrastructure;
 
-public interface ITwitterStreamReader
+public interface ITwitterStreamReader : IDisposable
 {
-    Task StartAsync();
+    void Start();
+    void Stop();
 }
 
-public class TwitterStreamReader : ITwitterStreamReader
+internal sealed class TwitterStreamReader : ITwitterStreamReader
 {
-    private readonly ITwitterClient _twitterClient;
+    private readonly ITwitterClient _client;
+    private ISampleStreamV2? _stream;
 
     public TwitterStreamReader(ITwitterClient twitterClient)
     {
-        _twitterClient = twitterClient;
+        _client = twitterClient;
     }
 
-    public async Task StartAsync()
+    public void Start()
     {
-        var sampleStreamV2 = _twitterClient.StreamsV2.CreateSampleStream();
-        sampleStreamV2.TweetReceived += (_, args) => Console.WriteLine(args.Tweet.Text);
-        await sampleStreamV2.StartAsync();
+        if (_stream != default) return;
+        _stream = _client.StreamsV2.CreateSampleStream();
+        _stream.TweetReceived += (_, args) => Console.WriteLine(args.Tweet.Text);
+        Task.Run(() => _stream.StartAsync());
+    }
+
+    public void Stop()
+    {
+        if (_stream == default) return;
+        _stream.StopStream();
+        _stream = default;
+    }
+
+    public void Dispose()
+    {
+        Stop();
     }
 }

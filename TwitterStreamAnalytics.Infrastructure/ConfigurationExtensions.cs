@@ -10,11 +10,11 @@ public static class ConfigurationExtensions
     public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.Configure<TwitterOptions>(configuration.GetSection(TwitterOptions.Twitter));
-        services.AddScoped<ITwitterClient>(s =>
+        services.AddSingleton<ITwitterClient>(s =>
         {
             var twitterOptions = s.GetRequiredService<IOptions<TwitterOptions>>().Value;
             return new TwitterClient(default, default, twitterOptions.AppBearerToken);
         });
-        services.AddScoped<ITwitterStreamReader, TwitterStreamReader>();
+        services.AddSingleton<ITwitterStreamReader, TwitterStreamReader>();
     }
 }

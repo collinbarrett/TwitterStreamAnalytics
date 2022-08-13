@@ -1,6 +1,6 @@
 ﻿namespace TwitterStreamAnalytics.Infrastructure;
 
-public class TwitterOptions
+internal class TwitterOptions
 {
     public const string Twitter = "Twitter";
 
