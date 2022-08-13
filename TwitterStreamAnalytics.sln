@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32804.467
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterStreamAnalytics.Api", "TwitterStreamAnalytics.Api\TwitterStreamAnalytics.Api.csproj", "{95CB323E-FC5F-4A5D-BA69-D5F1A808C9D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterStreamAnalytics.Api", "TwitterStreamAnalytics.Api\TwitterStreamAnalytics.Api.csproj", "{95CB323E-FC5F-4A5D-BA69-D5F1A808C9D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterStreamAnalytics.Infrastructure", "TwitterStreamAnalytics.Infrastructure\TwitterStreamAnalytics.Infrastructure.csproj", "{78FB6516-9845-41B5-A5BD-89FFABF90CD1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{95CB323E-FC5F-4A5D-BA69-D5F1A808C9D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95CB323E-FC5F-4A5D-BA69-D5F1A808C9D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95CB323E-FC5F-4A5D-BA69-D5F1A808C9D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78FB6516-9845-41B5-A5BD-89FFABF90CD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78FB6516-9845-41B5-A5BD-89FFABF90CD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78FB6516-9845-41B5-A5BD-89FFABF90CD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78FB6516-9845-41B5-A5BD-89FFABF90CD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
