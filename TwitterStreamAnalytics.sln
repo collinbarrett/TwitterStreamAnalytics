@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterStreamAnalytics.Infr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterStreamAnalytics.Application", "TwitterStreamAnalytics.Application\TwitterStreamAnalytics.Application.csproj", "{C634ED60-2989-4911-A4CB-E9BDACEF21E6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterStreamAnalytics.Domain", "TwitterStreamAnalytics.Domain\TwitterStreamAnalytics.Domain.csproj", "{D14AD798-FE92-4286-98C5-F390C79C115C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{C634ED60-2989-4911-A4CB-E9BDACEF21E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C634ED60-2989-4911-A4CB-E9BDACEF21E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C634ED60-2989-4911-A4CB-E9BDACEF21E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D14AD798-FE92-4286-98C5-F390C79C115C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D14AD798-FE92-4286-98C5-F390C79C115C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D14AD798-FE92-4286-98C5-F390C79C115C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D14AD798-FE92-4286-98C5-F390C79C115C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

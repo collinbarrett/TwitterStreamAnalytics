@@ -1,5 +1,8 @@
-﻿using Tweetinvi;
+﻿using MassTransit;
+using Microsoft.Extensions.Logging;
+using Tweetinvi;
 using Tweetinvi.Streaming.V2;
+using TwitterStreamAnalytics.Domain.Events;
 
 namespace TwitterStreamAnalytics.Infrastructure.TwitterClient;
 
@@ -11,19 +14,27 @@ public interface ITwitterStreamReader : IDisposable
 
 internal sealed class TwitterStreamReader : ITwitterStreamReader
 {
+    private readonly IBus _bus;
     private readonly ITwitterClient _client;
+    private readonly ILogger<TwitterStreamReader> _logger;
     private ISampleStreamV2? _stream;
 
-    public TwitterStreamReader(ITwitterClient twitterClient)
+    public TwitterStreamReader(IBus bus, ITwitterClient twitterClient, ILogger<TwitterStreamReader> logger)
     {
+        _bus = bus;
         _client = twitterClient;
+        _logger = logger;
     }
 
     public void Start()
     {
         if (_stream != default) return;
         _stream = _client.StreamsV2.CreateSampleStream();
-        _stream.TweetReceived += (_, args) => Console.WriteLine(args.Tweet.Text);
+        _stream.TweetReceived += async (_, args) =>
+        {
+            await _bus.Publish<ITweetReceived>(new { args.Tweet.Id, args.Tweet.Entities.Hashtags });
+            _logger.LogInformation("Tweet ID {Id} received.", args.Tweet.Id);
+        };
         Task.Run(() => _stream.StartAsync());
     }
 

@@ -1,3 +1,4 @@
+using MassTransit;
 using TwitterStreamAnalytics.Api;
 using TwitterStreamAnalytics.Application;
 
@@ -13,5 +14,8 @@ app.UseSwagger();
 app.UseSwaggerUI();
 app.UseHttpsRedirection();
 app.AddRoutes();
+
+//TODO: move to infrastructure project?
+await app.Services.GetRequiredService<IBusControl>().StartAsync();
 
 app.Run();
