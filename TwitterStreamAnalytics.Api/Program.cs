@@ -1,5 +1,5 @@
+using TwitterStreamAnalytics.Api;
 using TwitterStreamAnalytics.Infrastructure;
-using TwitterStreamAnalytics.Infrastructure.TwitterClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,12 +11,7 @@ var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();
-
 app.UseHttpsRedirection();
-
-app.MapPost("/start",
-    (ITwitterStreamReader streamReader) => streamReader.Start()).WithName("Start");
-app.MapPost("/stop",
-    (ITwitterStreamReader streamReader) => streamReader.Stop()).WithName("Stop");
+app.AddRoutes();
 
 app.Run();
