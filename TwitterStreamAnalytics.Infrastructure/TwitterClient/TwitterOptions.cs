@@ -1,4 +1,4 @@
-﻿namespace TwitterStreamAnalytics.Infrastructure;
+﻿namespace TwitterStreamAnalytics.Infrastructure.TwitterClient;
 
 internal class TwitterOptions
 {

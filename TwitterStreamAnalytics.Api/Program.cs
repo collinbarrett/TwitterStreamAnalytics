@@ -1,4 +1,5 @@
 using TwitterStreamAnalytics.Infrastructure;
+using TwitterStreamAnalytics.Infrastructure.TwitterClient;
 
 var builder = WebApplication.CreateBuilder(args);
 

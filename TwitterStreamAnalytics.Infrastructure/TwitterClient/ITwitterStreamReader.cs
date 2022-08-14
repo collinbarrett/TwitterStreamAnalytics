@@ -1,7 +1,7 @@
 ﻿using Tweetinvi;
 using Tweetinvi.Streaming.V2;
 
-namespace TwitterStreamAnalytics.Infrastructure;
+namespace TwitterStreamAnalytics.Infrastructure.TwitterClient;
 
 public interface ITwitterStreamReader : IDisposable
 {
