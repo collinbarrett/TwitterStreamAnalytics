@@ -1,53 +1,62 @@
-﻿using MassTransit;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Tweetinvi;
+using Tweetinvi.Events.V2;
 using Tweetinvi.Streaming.V2;
-using TwitterStreamAnalytics.Domain.Events;
 
 namespace TwitterStreamAnalytics.Infrastructure.TwitterClient;
 
+/// <summary>
+///     The singleton service persistent subscribing to the Twitter sample stream.
+/// </summary>
+/// <seealso cref="IDisposable" />
 public interface ITwitterStreamReader : IDisposable
 {
-    void Start();
+    void Start(EventHandler<TweetV2ReceivedEventArgs> onTweetReceived);
     void Stop();
 }
 
 internal sealed class TwitterStreamReader : ITwitterStreamReader
 {
-    private readonly IBus _bus;
     private readonly ITwitterClient _client;
     private readonly ILogger<TwitterStreamReader> _logger;
     private ISampleStreamV2? _stream;
 
-    public TwitterStreamReader(IBus bus, ITwitterClient twitterClient, ILogger<TwitterStreamReader> logger)
+    public TwitterStreamReader(ITwitterClient twitterClient, ILogger<TwitterStreamReader> logger)
     {
-        _bus = bus;
         _client = twitterClient;
         _logger = logger;
     }
 
-    public void Start()
+    public void Start(EventHandler<TweetV2ReceivedEventArgs> onTweetReceived)
     {
-        if (_stream != default) return;
-        _stream = _client.StreamsV2.CreateSampleStream();
-        _stream.TweetReceived += async (_, args) =>
+        if (_stream != default)
         {
-            await _bus.Publish<ITweetReceived>(new
-                { args.Tweet.Id, Hashtags = args.Tweet.Entities.Hashtags?.Select(h => h.Tag) });
-            _logger.LogInformation("Tweet ID {Id} received.", args.Tweet.Id);
-        };
+            _logger.LogInformation("StreamReader already started.");
+            return;
+        }
+
+        _stream = _client.StreamsV2.CreateSampleStream();
+        _stream.TweetReceived += onTweetReceived;
         Task.Run(() => _stream.StartAsync());
+        _logger.LogInformation("StreamReader started.");
     }
 
     public void Stop()
     {
-        if (_stream == default) return;
+        if (_stream == default)
+        {
+            _logger.LogInformation("StreamReader already stopped.");
+            return;
+        }
+
         _stream.StopStream();
         _stream = default;
+        _logger.LogInformation("StreamReader stopped.");
     }
 
     public void Dispose()
     {
         Stop();
+        _logger.LogDebug("StreamReader disposed.");
     }
 }
