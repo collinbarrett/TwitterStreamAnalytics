@@ -8,12 +8,12 @@ using TwitterStreamAnalytics.Infrastructure.Persistence.Entities;
 
 namespace TwitterStreamAnalytics.Application.EventConsumers;
 
-public class AnalyzeTweet : IConsumer<ITweetReceived>
+public class TweetReceivedConsumer : IConsumer<ITweetReceived>
 {
     private readonly AnalyticsContext _dbContext;
-    private readonly ILogger<AnalyzeTweet> _logger;
+    private readonly ILogger<TweetReceivedConsumer> _logger;
 
-    public AnalyzeTweet(AnalyticsContext dbContext, ILogger<AnalyzeTweet> logger)
+    public TweetReceivedConsumer(AnalyticsContext dbContext, ILogger<TweetReceivedConsumer> logger)
     {
         _dbContext = dbContext;
         _logger = logger;

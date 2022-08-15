@@ -22,7 +22,7 @@ public static class ConfigurationExtensions
 
         services.AddMassTransit(bc =>
         {
-            bc.AddConsumersFromNamespaceContaining<AnalyzeTweet>();
+            bc.AddConsumersFromNamespaceContaining<TweetReceivedConsumer>();
 
             //TODO: replace w/alternate transport for persistence/scale (https://masstransit-project.com/usage/transports/)
             bc.UsingInMemory((context, imbc) => imbc.ConfigureEndpoints(context));
