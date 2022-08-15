@@ -20,7 +20,6 @@ public static class ConfigurationExtensions
             cfg.AddRequestClient<IGetStats>();
         });
 
-        //TODO: move to infrastructure project?
         services.AddMassTransit(bc =>
         {
             bc.AddConsumersFromNamespaceContaining<AnalyzeTweet>();
