@@ -42,14 +42,14 @@ public class AnalyzeTweet : IConsumer<ITweetReceived>
         if (!tweet.Hashtags.IsNullOrEmpty())
         {
             var existingHashtags = await _dbContext.Hashtags
-                .Where(h => tweet.Hashtags.Contains(h.Value))
+                .Where(h => tweet.Hashtags.Contains(h.Tag))
                 .ToListAsync();
             foreach (var hashtag in existingHashtags) hashtag.Count++;
 
-            var newHashtags = tweet.Hashtags.ExceptBy(existingHashtags.Select(h => h.Value), h => h);
+            var newHashtags = tweet.Hashtags.ExceptBy(existingHashtags.Select(h => h.Tag), h => h);
             _dbContext.Hashtags.AddRange(newHashtags.Select(h => new Hashtag
             {
-                Value = h,
+                Tag = h,
                 Count = 1
             }));
         }

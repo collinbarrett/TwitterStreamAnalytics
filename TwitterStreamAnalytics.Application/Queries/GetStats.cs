@@ -25,7 +25,7 @@ public class GetStatsConsumer : IConsumer<IGetStats>
             TopHashtags = await _dbContext.Hashtags
                 .OrderByDescending(h => h.Count)
                 .Take(10)
-                .Select(h => new { h.Value, h.Count })
+                .Select(h => new { h.Tag, h.Count })
                 .ToListAsync()
         });
     }
@@ -39,6 +39,6 @@ public interface IStats
 
 public interface IHashtag
 {
-    public string Value { get; }
+    public string Tag { get; }
     public int Count { get; }
 }
