@@ -1,6 +1,8 @@
-﻿namespace TwitterStreamAnalytics.Domain.Entities;
+﻿using TwitterStreamAnalytics.Domain.SeedWork;
 
-public class Hashtag
+namespace TwitterStreamAnalytics.Domain.Aggregates;
+
+public class Hashtag : IAggregateRoot
 {
     public Hashtag(string tag)
     {

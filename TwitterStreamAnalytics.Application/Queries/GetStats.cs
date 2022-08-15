@@ -1,6 +1,6 @@
 ﻿using MassTransit;
 using Microsoft.EntityFrameworkCore;
-using TwitterStreamAnalytics.Infrastructure.Persistence;
+using TwitterStreamAnalytics.Infrastructure.Persistence.DbContexts;
 
 namespace TwitterStreamAnalytics.Application.Queries;
 
@@ -10,9 +10,9 @@ public interface IGetStats
 
 public class GetStatsConsumer : IConsumer<IGetStats>
 {
-    private readonly AnalyticsContext _dbContext;
+    private readonly IQueryContext _dbContext;
 
-    public GetStatsConsumer(AnalyticsContext dbContext)
+    public GetStatsConsumer(IQueryContext dbContext)
     {
         _dbContext = dbContext;
     }
@@ -21,12 +21,12 @@ public class GetStatsConsumer : IConsumer<IGetStats>
     {
         await context.RespondAsync<IStats>(new
         {
-            TweetCount = await _dbContext.Tweets.CountAsync(),
+            TweetCount = await _dbContext.Tweets.CountAsync(context.CancellationToken),
             TopHashtags = await _dbContext.Hashtags
                 .OrderByDescending(h => h.Count)
                 .Take(10)
                 .Select(h => new { h.Tag, h.Count })
-                .ToListAsync()
+                .ToListAsync(context.CancellationToken)
         });
     }
 }

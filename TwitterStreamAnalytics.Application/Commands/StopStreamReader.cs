@@ -9,16 +9,16 @@ public interface IStopStreamReader
 
 public class StopStreamReaderConsumer : IConsumer<IStopStreamReader>
 {
-    private readonly ITwitterStreamReader _streamReader;
+    private readonly ITwitterStreamReader _reader;
 
-    public StopStreamReaderConsumer(ITwitterStreamReader streamReader)
+    public StopStreamReaderConsumer(ITwitterStreamReader twitterStreamReader)
     {
-        _streamReader = streamReader;
+        _reader = twitterStreamReader;
     }
 
     public Task Consume(ConsumeContext<IStopStreamReader> context)
     {
-        _streamReader.Stop();
+        _reader.Stop();
         return Task.CompletedTask;
     }
 }

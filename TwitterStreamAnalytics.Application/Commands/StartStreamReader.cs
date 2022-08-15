@@ -11,17 +11,17 @@ public interface IStartStreamReader
 public class StartStreamReaderConsumer : IConsumer<IStartStreamReader>
 {
     private readonly IBus _bus;
-    private readonly ITwitterStreamReader _streamReader;
+    private readonly ITwitterStreamReader _reader;
 
-    public StartStreamReaderConsumer(IBus bus, ITwitterStreamReader streamReader)
+    public StartStreamReaderConsumer(IBus bus, ITwitterStreamReader twitterStreamReader)
     {
-        _streamReader = streamReader;
         _bus = bus;
+        _reader = twitterStreamReader;
     }
 
     public Task Consume(ConsumeContext<IStartStreamReader> context)
     {
-        _streamReader.Start((_, args) =>
+        _reader.Start((_, args) =>
         {
             _bus.Publish<ITweetReceived>(new
             {
