@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using TwitterStreamAnalytics.Infrastructure.Persistence;
 
-namespace TwitterStreamAnalytics.Application.Analytics;
+namespace TwitterStreamAnalytics.Application.Queries;
 
 public interface IGetStats
 {

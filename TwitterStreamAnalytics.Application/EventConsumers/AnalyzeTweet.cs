@@ -6,7 +6,7 @@ using TwitterStreamAnalytics.Domain.Events;
 using TwitterStreamAnalytics.Infrastructure.Persistence;
 using TwitterStreamAnalytics.Infrastructure.Persistence.Entities;
 
-namespace TwitterStreamAnalytics.Application.Analytics;
+namespace TwitterStreamAnalytics.Application.EventConsumers;
 
 public class AnalyzeTweet : IConsumer<ITweetReceived>
 {

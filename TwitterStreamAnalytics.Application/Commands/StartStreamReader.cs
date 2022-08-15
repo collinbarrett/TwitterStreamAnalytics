@@ -1,7 +1,7 @@
 ﻿using MassTransit;
 using TwitterStreamAnalytics.Infrastructure.TwitterClient;
 
-namespace TwitterStreamAnalytics.Application.StreamReader;
+namespace TwitterStreamAnalytics.Application.Commands;
 
 public interface IStartStreamReader
 {

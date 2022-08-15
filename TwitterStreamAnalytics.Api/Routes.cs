@@ -1,7 +1,7 @@
 ﻿using MassTransit;
 using MassTransit.Mediator;
-using TwitterStreamAnalytics.Application.Analytics;
-using TwitterStreamAnalytics.Application.StreamReader;
+using TwitterStreamAnalytics.Application.Commands;
+using TwitterStreamAnalytics.Application.Queries;
 
 namespace TwitterStreamAnalytics.Api;
 
