@@ -12,12 +12,20 @@ public static class ConfigurationExtensions
     public static void AddApplication(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddInfrastructure(configuration);
-        services.AddMediator(cfg => cfg.AddConsumersFromNamespaceContaining<StartStreamReader.Consumer>());
+        services.AddMediator(cfg =>
+        {
+            //TODO: register all automatically
+            cfg.AddConsumer<StartStreamReaderConsumer>();
+            cfg.AddConsumer<StopStreamReaderConsumer>();
+            cfg.AddConsumer<GetStatsConsumer>();
+            cfg.AddRequestClient<IGetStats>();
+        });
 
         //TODO: move to infrastructure project?
         services.AddMassTransit(bc =>
         {
-            bc.AddConsumersFromNamespaceContaining<AnalyzeTweet>();
+            //TODO: register all automatically
+            bc.AddConsumer<AnalyzeTweet>();
 
             //TODO: replace w/alternate transport for persistence/scale (https://masstransit-project.com/usage/transports/)
             bc.UsingInMemory((context, imbc) => imbc.ConfigureEndpoints(context));

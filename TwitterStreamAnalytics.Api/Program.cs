@@ -15,7 +15,7 @@ app.UseSwaggerUI();
 app.UseHttpsRedirection();
 app.AddRoutes();
 
-//TODO: move to infrastructure project?
+//TODO: mv to infrastructure project and/or mv to IHostedService with teardown?
 await app.Services.GetRequiredService<IBusControl>().StartAsync();
 
 app.Run();

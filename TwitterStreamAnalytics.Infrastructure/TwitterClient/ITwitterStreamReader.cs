@@ -32,7 +32,8 @@ internal sealed class TwitterStreamReader : ITwitterStreamReader
         _stream = _client.StreamsV2.CreateSampleStream();
         _stream.TweetReceived += async (_, args) =>
         {
-            await _bus.Publish<ITweetReceived>(new { args.Tweet.Id, args.Tweet.Entities.Hashtags });
+            await _bus.Publish<ITweetReceived>(new
+                { args.Tweet.Id, Hashtags = args.Tweet.Entities.Hashtags?.Select(h => h.Tag) });
             _logger.LogInformation("Tweet ID {Id} received.", args.Tweet.Id);
         };
         Task.Run(() => _stream.StartAsync());

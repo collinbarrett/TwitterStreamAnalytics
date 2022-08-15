@@ -3,29 +3,22 @@ using TwitterStreamAnalytics.Infrastructure.TwitterClient;
 
 namespace TwitterStreamAnalytics.Application.StreamReader;
 
-public static class StopStreamReader
+public interface IStopStreamReader
 {
-    public record Request
+}
+
+public class StopStreamReaderConsumer : IConsumer<IStopStreamReader>
+{
+    private readonly ITwitterStreamReader _streamReader;
+
+    public StopStreamReaderConsumer(ITwitterStreamReader streamReader)
     {
+        _streamReader = streamReader;
     }
 
-    public class Consumer : IConsumer<Request>
+    public Task Consume(ConsumeContext<IStopStreamReader> context)
     {
-        private readonly ITwitterStreamReader _streamReader;
-
-        public Consumer(ITwitterStreamReader streamReader)
-        {
-            _streamReader = streamReader;
-        }
-
-        public async Task Consume(ConsumeContext<Request> context)
-        {
-            _streamReader.Stop();
-            await context.RespondAsync(new Response());
-        }
-    }
-
-    public record Response
-    {
+        _streamReader.Stop();
+        return Task.CompletedTask;
     }
 }
