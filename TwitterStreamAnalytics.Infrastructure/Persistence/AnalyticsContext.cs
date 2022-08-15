@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TwitterStreamAnalytics.Infrastructure.Persistence.Entities;
+using TwitterStreamAnalytics.Domain.Entities;
 
 namespace TwitterStreamAnalytics.Infrastructure.Persistence;
 
