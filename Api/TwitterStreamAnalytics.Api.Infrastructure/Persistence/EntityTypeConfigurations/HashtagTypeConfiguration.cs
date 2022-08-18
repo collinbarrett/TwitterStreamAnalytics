@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TwitterStreamAnalytics.SharedKernel.Domain.Aggregates;
+using TwitterStreamAnalytics.Api.Infrastructure.Persistence.Entities;
 
-namespace TwitterStreamAnalytics.SharedKernel.Infrastructure.Persistence.InMem;
+namespace TwitterStreamAnalytics.Api.Infrastructure.Persistence.EntityTypeConfigurations;
 
 internal class HashtagTypeConfiguration : IEntityTypeConfiguration<Hashtag>
 {
