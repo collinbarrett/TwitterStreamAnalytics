@@ -1,8 +1,7 @@
 ﻿using TwitterStreamAnalytics.SharedKernel.Domain.SeedWork;
 
-namespace TwitterStreamAnalytics.SharedKernel.Domain.Aggregates;
+namespace TwitterStreamAnalytics.Consumers.Domain.Aggregates;
 
-// TODO: mv to Consumers.Domain when separate DbContexts are possible
 public class Hashtag : IAggregateRoot
 {
     public Hashtag(string tag)

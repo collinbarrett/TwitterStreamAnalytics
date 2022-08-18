@@ -1,17 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using TwitterStreamAnalytics.Consumers.Domain.Aggregates;
 using TwitterStreamAnalytics.Consumers.Domain.Repositories;
-using TwitterStreamAnalytics.SharedKernel.Domain.Aggregates;
-using TwitterStreamAnalytics.SharedKernel.Infrastructure.Persistence.InMem;
+using TwitterStreamAnalytics.Consumers.Infrastructure.Persistence.DbContexts;
 
-namespace TwitterStreamAnalytics.Consumers.Infrastructure.Repositories;
+namespace TwitterStreamAnalytics.Consumers.Infrastructure.Persistence.Repositories;
 
 internal class HashtagRepository : IHashtagRepository
 {
-    private readonly AnalyticsDbContext _dbContext;
+    private readonly CommandDbContext _dbContext;
     private readonly ILogger<HashtagRepository> _logger;
 
-    public HashtagRepository(AnalyticsDbContext dbContext, ILogger<HashtagRepository> logger)
+    public HashtagRepository(CommandDbContext dbContext, ILogger<HashtagRepository> logger)
     {
         _dbContext = dbContext;
         _logger = logger;

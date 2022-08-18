@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TwitterStreamAnalytics.SharedKernel.Domain.Aggregates;
+using TwitterStreamAnalytics.Api.Infrastructure.Persistence.Entities;
+using TwitterStreamAnalytics.Api.Infrastructure.Persistence.EntityTypeConfigurations;
 
-namespace TwitterStreamAnalytics.SharedKernel.Infrastructure.Persistence.InMem;
+namespace TwitterStreamAnalytics.Api.Infrastructure.Persistence.DbContexts;
 
-public class AnalyticsDbContext : DbContext
+public class QueryDbContext : DbContext
 {
-    public AnalyticsDbContext(DbContextOptions<AnalyticsDbContext> options) : base(options)
+    public QueryDbContext(DbContextOptions<QueryDbContext> options) : base(options)
     {
     }
 
