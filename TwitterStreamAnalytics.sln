@@ -3,13 +3,34 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32804.467
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterStreamAnalytics.Api", "TwitterStreamAnalytics.Api\TwitterStreamAnalytics.Api.csproj", "{95CB323E-FC5F-4A5D-BA69-D5F1A808C9D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterStreamAnalytics.Api", "Api\TwitterStreamAnalytics.Api\TwitterStreamAnalytics.Api.csproj", "{ABB27936-3D38-4298-A52D-ACC4627359A7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterStreamAnalytics.Infrastructure", "TwitterStreamAnalytics.Infrastructure\TwitterStreamAnalytics.Infrastructure.csproj", "{78FB6516-9845-41B5-A5BD-89FFABF90CD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterStreamAnalytics.Api.Application", "Api\TwitterStreamAnalytics.Api.Application\TwitterStreamAnalytics.Api.Application.csproj", "{53C6C98E-BEA2-4515-80B7-5B3D931E4E9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterStreamAnalytics.Application", "TwitterStreamAnalytics.Application\TwitterStreamAnalytics.Application.csproj", "{C634ED60-2989-4911-A4CB-E9BDACEF21E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterStreamAnalytics.Api.Infrastructure", "Api\TwitterStreamAnalytics.Api.Infrastructure\TwitterStreamAnalytics.Api.Infrastructure.csproj", "{CF15017C-1C81-429A-9782-722AE8B943CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterStreamAnalytics.Domain", "TwitterStreamAnalytics.Domain\TwitterStreamAnalytics.Domain.csproj", "{D14AD798-FE92-4286-98C5-F390C79C115C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{FEC5F89A-E479-431E-84CA-7ACB64CD5981}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Consumers", "Consumers", "{537C7FEF-032C-4607-BA78-79B4DA249F2E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedKernel", "SharedKernel", "{DD318E6E-9F9D-49B8-8686-6A65D302D1CB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterStreamAnalytics.Consumers.Application", "Consumers\TwitterStreamAnalytics.Consumers.Application\TwitterStreamAnalytics.Consumers.Application.csproj", "{58B693DD-F864-46C5-9C37-960F0FF53539}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterStreamAnalytics.Consumers.Domain", "Consumers\TwitterStreamAnalytics.Consumers.Domain\TwitterStreamAnalytics.Consumers.Domain.csproj", "{3C6B140C-F91E-47C1-BE64-86674B671AF2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterStreamAnalytics.Consumers.Infrastructure", "Consumers\TwitterStreamAnalytics.Consumers.Infrastructure\TwitterStreamAnalytics.Consumers.Infrastructure.csproj", "{BF807870-7272-4F5B-B1FE-86F1D92485EF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterStreamAnalytics.SharedKernel.Infrastructure.MessageBus.InMem", "SharedKernel\TwitterStreamAnalytics.SharedKernel.Infrastructure.MessageBus.InMem\TwitterStreamAnalytics.SharedKernel.Infrastructure.MessageBus.InMem.csproj", "{6D633FF5-8F36-426B-8E79-58689719AAE5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterStreamAnalytics.SharedKernel.Infrastructure.Persistence.InMem", "SharedKernel\TwitterStreamAnalytics.SharedKernel.Infrastructure.Persistence.InMem\TwitterStreamAnalytics.SharedKernel.Infrastructure.Persistence.InMem.csproj", "{16126EDE-7A1C-4B22-96A9-DFF0BDF9800A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{09906F47-71DF-4CAD-B85D-70C9385A2B97}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterStreamAnalytics.SharedKernel.Domain", "SharedKernel\TwitterStreamAnalytics.SharedKernel.Domain\TwitterStreamAnalytics.SharedKernel.Domain.csproj", "{541636FE-D11B-4427-8563-873DFCEDFFAC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,25 +38,56 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{95CB323E-FC5F-4A5D-BA69-D5F1A808C9D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{95CB323E-FC5F-4A5D-BA69-D5F1A808C9D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{95CB323E-FC5F-4A5D-BA69-D5F1A808C9D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{95CB323E-FC5F-4A5D-BA69-D5F1A808C9D3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{78FB6516-9845-41B5-A5BD-89FFABF90CD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{78FB6516-9845-41B5-A5BD-89FFABF90CD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{78FB6516-9845-41B5-A5BD-89FFABF90CD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{78FB6516-9845-41B5-A5BD-89FFABF90CD1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C634ED60-2989-4911-A4CB-E9BDACEF21E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C634ED60-2989-4911-A4CB-E9BDACEF21E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C634ED60-2989-4911-A4CB-E9BDACEF21E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C634ED60-2989-4911-A4CB-E9BDACEF21E6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D14AD798-FE92-4286-98C5-F390C79C115C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D14AD798-FE92-4286-98C5-F390C79C115C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D14AD798-FE92-4286-98C5-F390C79C115C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D14AD798-FE92-4286-98C5-F390C79C115C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABB27936-3D38-4298-A52D-ACC4627359A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABB27936-3D38-4298-A52D-ACC4627359A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABB27936-3D38-4298-A52D-ACC4627359A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABB27936-3D38-4298-A52D-ACC4627359A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53C6C98E-BEA2-4515-80B7-5B3D931E4E9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53C6C98E-BEA2-4515-80B7-5B3D931E4E9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53C6C98E-BEA2-4515-80B7-5B3D931E4E9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53C6C98E-BEA2-4515-80B7-5B3D931E4E9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF15017C-1C81-429A-9782-722AE8B943CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF15017C-1C81-429A-9782-722AE8B943CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF15017C-1C81-429A-9782-722AE8B943CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF15017C-1C81-429A-9782-722AE8B943CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58B693DD-F864-46C5-9C37-960F0FF53539}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58B693DD-F864-46C5-9C37-960F0FF53539}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58B693DD-F864-46C5-9C37-960F0FF53539}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58B693DD-F864-46C5-9C37-960F0FF53539}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C6B140C-F91E-47C1-BE64-86674B671AF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C6B140C-F91E-47C1-BE64-86674B671AF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C6B140C-F91E-47C1-BE64-86674B671AF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C6B140C-F91E-47C1-BE64-86674B671AF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF807870-7272-4F5B-B1FE-86F1D92485EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF807870-7272-4F5B-B1FE-86F1D92485EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF807870-7272-4F5B-B1FE-86F1D92485EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF807870-7272-4F5B-B1FE-86F1D92485EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D633FF5-8F36-426B-8E79-58689719AAE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D633FF5-8F36-426B-8E79-58689719AAE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D633FF5-8F36-426B-8E79-58689719AAE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D633FF5-8F36-426B-8E79-58689719AAE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16126EDE-7A1C-4B22-96A9-DFF0BDF9800A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16126EDE-7A1C-4B22-96A9-DFF0BDF9800A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16126EDE-7A1C-4B22-96A9-DFF0BDF9800A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16126EDE-7A1C-4B22-96A9-DFF0BDF9800A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{541636FE-D11B-4427-8563-873DFCEDFFAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{541636FE-D11B-4427-8563-873DFCEDFFAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{541636FE-D11B-4427-8563-873DFCEDFFAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{541636FE-D11B-4427-8563-873DFCEDFFAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{ABB27936-3D38-4298-A52D-ACC4627359A7} = {FEC5F89A-E479-431E-84CA-7ACB64CD5981}
+		{53C6C98E-BEA2-4515-80B7-5B3D931E4E9C} = {FEC5F89A-E479-431E-84CA-7ACB64CD5981}
+		{CF15017C-1C81-429A-9782-722AE8B943CB} = {FEC5F89A-E479-431E-84CA-7ACB64CD5981}
+		{58B693DD-F864-46C5-9C37-960F0FF53539} = {537C7FEF-032C-4607-BA78-79B4DA249F2E}
+		{3C6B140C-F91E-47C1-BE64-86674B671AF2} = {537C7FEF-032C-4607-BA78-79B4DA249F2E}
+		{BF807870-7272-4F5B-B1FE-86F1D92485EF} = {537C7FEF-032C-4607-BA78-79B4DA249F2E}
+		{6D633FF5-8F36-426B-8E79-58689719AAE5} = {DD318E6E-9F9D-49B8-8686-6A65D302D1CB}
+		{16126EDE-7A1C-4B22-96A9-DFF0BDF9800A} = {DD318E6E-9F9D-49B8-8686-6A65D302D1CB}
+		{541636FE-D11B-4427-8563-873DFCEDFFAC} = {DD318E6E-9F9D-49B8-8686-6A65D302D1CB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5CE718B4-43E2-4571-9798-68A7C691D8E1}

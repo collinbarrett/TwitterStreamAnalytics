@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TwitterStreamAnalytics.Consumers.Domain\TwitterStreamAnalytics.Consumers.Domain.csproj" />
+    <ProjectReference Include="..\TwitterStreamAnalytics.Consumers.Infrastructure\TwitterStreamAnalytics.Consumers.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
