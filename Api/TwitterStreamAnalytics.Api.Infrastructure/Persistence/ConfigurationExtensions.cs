@@ -9,12 +9,11 @@ internal static class ConfigurationExtensions
 {
     public static void AddPersistence(this IServiceCollection services)
     {
-        //services.AddDbContextPool<QueryDbContext>(o =>
-        //{
-        //    // TODO: replace w/nonvolatile database
-        //    o.UseInMemoryDatabase(nameof(TwitterStreamAnalytics), MyInMemoryDatabase.Root);
-        //    //o.UseInternalServiceProvider(serviceProvider);
-        //});
+        services.AddDbContextPool<QueryDbContext>(o =>
+        {
+            // TODO: replace w/nonvolatile database
+            o.UseInMemoryDatabase(nameof(TwitterStreamAnalytics), MyInMemoryDatabase.Root);
+        });
         services.AddScoped<IQueryContext, QueryContext>();
     }
 }
