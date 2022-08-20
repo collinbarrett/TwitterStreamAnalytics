@@ -14,11 +14,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference
-			Include="..\..\Consumers\TwitterStreamAnalytics.Consumers.Application\TwitterStreamAnalytics.Consumers.Application.csproj" />
-		<ProjectReference
-			Include="..\..\SharedKernel\TwitterStreamAnalytics.SharedKernel.Infrastructure.MessageBus.InMem\TwitterStreamAnalytics.SharedKernel.Infrastructure.MessageBus.InMem.csproj" />
-		<ProjectReference Include="..\TwitterStreamAnalytics.Api.Application\TwitterStreamAnalytics.Api.Application.csproj" />
+		<ProjectReference Include="..\..\SharedKernel\TwitterStreamAnalytics.SharedKernel.Infrastructure.MessageBus.InMem\TwitterStreamAnalytics.SharedKernel.Infrastructure.MessageBus.InMem.csproj" />
 	</ItemGroup>
 
 </Project>
