@@ -20,4 +20,16 @@ internal class QueryDbContext : DbContext
             GetType().Assembly,
             type => type.Namespace == typeof(HashtagTypeConfiguration).Namespace);
     }
+
+    public override int SaveChanges(bool acceptAllChangesOnSuccess)
+    {
+        throw new InvalidOperationException("This context is read-only.");
+    }
+
+    public override Task<int> SaveChangesAsync(
+        bool acceptAllChangesOnSuccess,
+        CancellationToken cancellationToken = default)
+    {
+        throw new InvalidOperationException("This context is read-only.");
+    }
 }
