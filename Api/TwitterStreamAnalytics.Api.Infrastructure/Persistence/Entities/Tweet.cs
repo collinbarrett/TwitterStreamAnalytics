@@ -1,6 +1,13 @@
-﻿namespace TwitterStreamAnalytics.Api.Infrastructure.Persistence.Entities;
+﻿using TwitterStreamAnalytics.SharedKernel.Domain.SeedWork;
 
-public record Tweet
+namespace TwitterStreamAnalytics.Api.Infrastructure.Persistence.Entities;
+
+public class Tweet : IAggregateRoot
 {
-    public string Id { get; init; } = default!;
+    public Tweet(string id)
+    {
+        Id = id;
+    }
+
+    public string Id { get; init; }
 }

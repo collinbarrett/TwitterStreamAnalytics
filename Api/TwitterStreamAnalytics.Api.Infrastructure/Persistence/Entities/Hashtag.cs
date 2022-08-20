@@ -1,7 +1,19 @@
-﻿namespace TwitterStreamAnalytics.Api.Infrastructure.Persistence.Entities;
+﻿using TwitterStreamAnalytics.SharedKernel.Domain.SeedWork;
 
-public record Hashtag
+namespace TwitterStreamAnalytics.Api.Infrastructure.Persistence.Entities;
+
+public class Hashtag : IAggregateRoot
 {
-    public string Tag { get; init; } = default!;
-    public int Count { get; init; }
+    public Hashtag(string tag)
+    {
+        Tag = tag;
+    }
+
+    public string Tag { get; init; }
+    public int Count { get; private set; } = 1;
+
+    public void IncrementCount()
+    {
+        Count++;
+    }
 }
