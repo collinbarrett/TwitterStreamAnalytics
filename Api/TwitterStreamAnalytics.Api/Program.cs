@@ -13,7 +13,7 @@ builder.Services.AddConsumersApplication();
 
 builder.Services.AddApiApplication(builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(options => options.CustomSchemaIds(type => type.ToString()));
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 app.AddRoutes();
