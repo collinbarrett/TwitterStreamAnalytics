@@ -1,4 +1,4 @@
-﻿using TwitterStreamAnalytics.Consumers.Domain.Aggregates;
+﻿using TwitterStreamAnalytics.SharedKernel.Domain.Aggregates;
 using TwitterStreamAnalytics.SharedKernel.Domain.SeedWork;
 
 namespace TwitterStreamAnalytics.Consumers.Domain.Repositories;

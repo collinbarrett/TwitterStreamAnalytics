@@ -1,7 +1,7 @@
 ﻿using MassTransit;
 using Microsoft.Extensions.Logging;
-using TwitterStreamAnalytics.Consumers.Domain.Aggregates;
 using TwitterStreamAnalytics.Consumers.Domain.Repositories;
+using TwitterStreamAnalytics.SharedKernel.Domain.Aggregates;
 using TwitterStreamAnalytics.SharedKernel.Domain.Events;
 
 namespace TwitterStreamAnalytics.Consumers.Application.Consumers;

@@ -1,6 +1,6 @@
 ﻿using TwitterStreamAnalytics.SharedKernel.Domain.SeedWork;
 
-namespace TwitterStreamAnalytics.Api.Infrastructure.Persistence.Entities;
+namespace TwitterStreamAnalytics.SharedKernel.Domain.Aggregates;
 
 public class Hashtag : IAggregateRoot
 {

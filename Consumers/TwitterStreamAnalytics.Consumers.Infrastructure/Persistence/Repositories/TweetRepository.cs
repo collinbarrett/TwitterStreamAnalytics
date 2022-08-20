@@ -1,6 +1,6 @@
-﻿using TwitterStreamAnalytics.Consumers.Domain.Aggregates;
-using TwitterStreamAnalytics.Consumers.Domain.Repositories;
+﻿using TwitterStreamAnalytics.Consumers.Domain.Repositories;
 using TwitterStreamAnalytics.Consumers.Infrastructure.Persistence.DbContexts;
+using TwitterStreamAnalytics.SharedKernel.Domain.Aggregates;
 
 namespace TwitterStreamAnalytics.Consumers.Infrastructure.Persistence.Repositories;
 
