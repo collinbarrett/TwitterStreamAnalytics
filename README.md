@@ -31,23 +31,24 @@ By design, the Consumers application could be extracted to an independent proces
 flowchart TB;  
   Api-->SharedKernel.Infrastructure.MessageBus.InMem;
   Api-->N1([Swashbuckle.AspNetCore]);
+  Api-->N2([Swashbuckle.AspNetCore.Annotations]);
   SharedKernel.Infrastructure.MessageBus.InMem-->Api.Application;
   SharedKernel.Infrastructure.MessageBus.InMem-->Consumers.Application;
-  SharedKernel.Infrastructure.MessageBus.InMem-->N5([MassTransit]);
+  SharedKernel.Infrastructure.MessageBus.InMem-->N3([MassTransit]);
   subgraph ApiApp
   Api.Application-->Api.Infrastructure;
-  Api.Infrastructure-->N3([TweetinviAPI]);
-  Api.Infrastructure-->N2([MassTransit.Abstractions]);  
+  Api.Infrastructure-->N4([TweetinviAPI]);
+  Api.Infrastructure-->N5([MassTransit.Abstractions]);  
   end
   subgraph ConsumersApp
   Consumers.Application-->Consumers.Infrastructure;
   Consumers.Infrastructure-->Consumers.Domain;
-  Consumers.Infrastructure-->N7([MassTransit.Abstractions]);
-  Consumers.Infrastructure-->N4([Scrutor]);
+  Consumers.Infrastructure-->N6([MassTransit.Abstractions]);
+  Consumers.Infrastructure-->N7([Scrutor]);
   end
   Api.Infrastructure-->SharedKernel.Domain;
   Consumers.Domain-->SharedKernel.Domain;
   Api.Infrastructure-->SharedKernel.Infrastructure.Persistence.InMem;
   Consumers.Infrastructure-->SharedKernel.Infrastructure.Persistence.InMem;
-  SharedKernel.Infrastructure.Persistence.InMem-->N6([Microsoft.EntityFrameworkCore.InMemory]);
+  SharedKernel.Infrastructure.Persistence.InMem-->N8([Microsoft.EntityFrameworkCore.InMemory]);
 ```
