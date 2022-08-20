@@ -11,10 +11,10 @@ internal static class ConfigurationExtensions
     {
         services.Configure<TwitterOptions>(configuration.GetSection(TwitterOptions.Twitter));
         services.AddSingleton<ITwitterClient>(s =>
-        {
-            var twitterOptions = s.GetRequiredService<IOptions<TwitterOptions>>().Value;
-            return new Tweetinvi.TwitterClient(default, default, twitterOptions.AppBearerToken);
-        });
+            new Tweetinvi.TwitterClient(
+                default,
+                default,
+                s.GetRequiredService<IOptions<TwitterOptions>>().Value.AppBearerToken));
         services.AddSingleton<ITwitterStreamReader, TwitterStreamReader>();
     }
 }

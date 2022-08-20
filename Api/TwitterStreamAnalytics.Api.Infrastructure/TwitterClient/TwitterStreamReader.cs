@@ -21,32 +21,32 @@ internal sealed class TwitterStreamReader : ITwitterStreamReader
     {
         if (_stream != default)
         {
-            _logger.LogInformation("StreamReader already started.");
+            _logger.LogInformation($"{nameof(ITwitterStreamReader)} already started.");
             return;
         }
 
         _stream = _client.StreamsV2.CreateSampleStream();
         _stream.TweetReceived += onTweetReceived;
         Task.Run(() => _stream.StartAsync());
-        _logger.LogInformation("StreamReader started.");
+        _logger.LogInformation($"{nameof(ITwitterStreamReader)} started.");
     }
 
     public void Stop()
     {
         if (_stream == default)
         {
-            _logger.LogInformation("StreamReader already stopped.");
+            _logger.LogInformation($"{nameof(ITwitterStreamReader)} already stopped.");
             return;
         }
 
         _stream.StopStream();
         _stream = default;
-        _logger.LogInformation("StreamReader stopped.");
+        _logger.LogInformation($"{nameof(ITwitterStreamReader)} already stopped.");
     }
 
     public void Dispose()
     {
         Stop();
-        _logger.LogDebug("StreamReader disposed.");
+        _logger.LogDebug($"{nameof(ITwitterStreamReader)} disposed.");
     }
 }

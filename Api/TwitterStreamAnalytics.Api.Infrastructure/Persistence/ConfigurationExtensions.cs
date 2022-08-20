@@ -12,7 +12,7 @@ internal static class ConfigurationExtensions
         services.AddDbContextPool<QueryDbContext>(o =>
         {
             // TODO: replace w/nonvolatile database
-            o.UseInMemoryDatabase(nameof(TwitterStreamAnalytics), MyInMemoryDatabase.Root);
+            o.UseInMemoryDatabase(nameof(TwitterStreamAnalytics), InMemoryDatabase.Root);
         });
         services.AddScoped<IQueryContext, QueryContext>();
     }

@@ -2,7 +2,7 @@
 
 namespace TwitterStreamAnalytics.SharedKernel.Infrastructure.Persistence.InMem;
 
-public static class MyInMemoryDatabase
+public static class InMemoryDatabase
 {
     public static readonly InMemoryDatabaseRoot Root = new();
 }

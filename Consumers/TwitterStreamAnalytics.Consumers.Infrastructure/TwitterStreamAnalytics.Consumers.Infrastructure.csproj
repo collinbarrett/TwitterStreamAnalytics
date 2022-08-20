@@ -1,19 +1,20 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="MassTransit.Abstractions" Version="8.0.6" />
-    <PackageReference Include="Scrutor" Version="4.2.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="MassTransit.Abstractions" Version="8.0.6" />
+		<PackageReference Include="Scrutor" Version="4.2.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\SharedKernel\TwitterStreamAnalytics.SharedKernel.Infrastructure.Persistence.InMem\TwitterStreamAnalytics.SharedKernel.Infrastructure.Persistence.InMem.csproj" />
-    <ProjectReference Include="..\TwitterStreamAnalytics.Consumers.Domain\TwitterStreamAnalytics.Consumers.Domain.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference
+			Include="..\..\SharedKernel\TwitterStreamAnalytics.SharedKernel.Infrastructure.Persistence.InMem\TwitterStreamAnalytics.SharedKernel.Infrastructure.Persistence.InMem.csproj" />
+		<ProjectReference Include="..\TwitterStreamAnalytics.Consumers.Domain\TwitterStreamAnalytics.Consumers.Domain.csproj" />
+	</ItemGroup>
 
 </Project>

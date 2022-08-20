@@ -4,7 +4,7 @@ using TwitterStreamAnalytics.SharedKernel.Domain.Aggregates;
 
 namespace TwitterStreamAnalytics.Api.Infrastructure.Persistence.DbContexts;
 
-public class QueryDbContext : DbContext
+internal class QueryDbContext : DbContext
 {
     public QueryDbContext(DbContextOptions<QueryDbContext> options) : base(options)
     {

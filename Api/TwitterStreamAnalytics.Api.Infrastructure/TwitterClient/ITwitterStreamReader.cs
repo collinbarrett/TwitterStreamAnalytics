@@ -3,9 +3,8 @@
 namespace TwitterStreamAnalytics.Api.Infrastructure.TwitterClient;
 
 /// <summary>
-///     The singleton service persistent subscribing to the Twitter sample stream.
+///     The singleton Twitter sample stream subscriber.
 /// </summary>
-/// <seealso cref="IDisposable" />
 public interface ITwitterStreamReader : IDisposable
 {
     void Start(EventHandler<TweetV2ReceivedEventArgs> onTweetReceived);

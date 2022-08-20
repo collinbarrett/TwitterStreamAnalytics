@@ -6,6 +6,7 @@ using TwitterStreamAnalytics.SharedKernel.Domain.Events;
 
 namespace TwitterStreamAnalytics.Consumers.Application.Consumers;
 
+// TODO: consider extracting IHashtagReceived event and handler
 public class CountHashtags : IConsumer<ITweetReceived>
 {
     private readonly ILogger<CountHashtags> _logger;

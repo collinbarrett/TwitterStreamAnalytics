@@ -7,14 +7,14 @@ using TwitterStreamAnalytics.SharedKernel.Infrastructure.Persistence.InMem;
 
 namespace TwitterStreamAnalytics.Consumers.Infrastructure.Persistence;
 
-public static class ConfigurationExtensions
+internal static class ConfigurationExtensions
 {
     public static void AddPersistence(this IServiceCollection services)
     {
         services.AddDbContextPool<CommandDbContext>(o =>
         {
             // TODO: replace w/nonvolatile database
-            o.UseInMemoryDatabase(nameof(TwitterStreamAnalytics), MyInMemoryDatabase.Root);
+            o.UseInMemoryDatabase(nameof(TwitterStreamAnalytics), InMemoryDatabase.Root);
         });
         services.Scan(s => s.FromAssemblyOf<TweetRepository>()
             .AddClasses(c => c.AssignableTo(typeof(IRepository<>)))

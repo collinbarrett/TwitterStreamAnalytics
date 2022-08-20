@@ -4,7 +4,7 @@ using TwitterStreamAnalytics.SharedKernel.Domain.Aggregates;
 
 namespace TwitterStreamAnalytics.Consumers.Infrastructure.Persistence.DbContexts;
 
-public class CommandDbContext : DbContext
+internal class CommandDbContext : DbContext
 {
     public CommandDbContext(DbContextOptions<CommandDbContext> options) : base(options)
     {
