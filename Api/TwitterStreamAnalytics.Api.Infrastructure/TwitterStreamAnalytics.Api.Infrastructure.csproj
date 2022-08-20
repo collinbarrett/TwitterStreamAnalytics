@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\SharedKernel\TwitterStreamAnalytics.SharedKernel.Domain\TwitterStreamAnalytics.SharedKernel.Domain.csproj" />
     <ProjectReference Include="..\..\SharedKernel\TwitterStreamAnalytics.SharedKernel.Infrastructure.Persistence.InMem\TwitterStreamAnalytics.SharedKernel.Infrastructure.Persistence.InMem.csproj" />
   </ItemGroup>
 
