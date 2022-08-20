@@ -11,12 +11,11 @@ public static class ConfigurationExtensions
 {
     public static void AddPersistence(this IServiceCollection services)
     {
-        //services.AddDbContextPool<CommandDbContext>(o =>
-        //{
-        //    // TODO: replace w/nonvolatile database
-        //    o.UseInMemoryDatabase(nameof(TwitterStreamAnalytics), MyInMemoryDatabase.Root);
-        //    //o.UseInternalServiceProvider(serviceProvider);
-        //});
+        services.AddDbContextPool<CommandDbContext>(o =>
+        {
+            // TODO: replace w/nonvolatile database
+            o.UseInMemoryDatabase(nameof(TwitterStreamAnalytics), MyInMemoryDatabase.Root);
+        });
         services.Scan(s => s.FromAssemblyOf<TweetRepository>()
             .AddClasses(c => c.AssignableTo(typeof(IRepository<>)))
             .AsImplementedInterfaces()
