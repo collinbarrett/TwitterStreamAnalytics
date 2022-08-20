@@ -22,6 +22,7 @@ public class GetStatsConsumer : IConsumer<IGetStats>
         await context.RespondAsync<IStats>(new
         {
             TweetCount = await _dbContext.Tweets.CountAsync(context.CancellationToken),
+            HashtagCount = await _dbContext.Hashtags.CountAsync(context.CancellationToken),
             TopHashtags = await _dbContext.Hashtags
                 .OrderByDescending(h => h.Count)
                 .Take(10)
@@ -34,6 +35,7 @@ public class GetStatsConsumer : IConsumer<IGetStats>
 public interface IStats
 {
     public int TweetCount { get; }
+    public int HashtagCount { get; }
     public IReadOnlyList<IHashtag> TopHashtags { get; }
 }
 
