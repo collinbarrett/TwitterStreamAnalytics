@@ -5,6 +5,6 @@ namespace TwitterStreamAnalytics.Consumers.Domain.Repositories;
 
 public interface IHashtagRepository : IRepository<Hashtag>
 {
-    Task<List<Hashtag>> FindAsync(IEnumerable<string> hashtags, CancellationToken cancellationToken);
-    void AddRange(IEnumerable<Hashtag> hashtags);
+    ValueTask<Hashtag?> FindAsync(string hashtag, CancellationToken cancellationToken);
+    void Add(Hashtag hashtag);
 }

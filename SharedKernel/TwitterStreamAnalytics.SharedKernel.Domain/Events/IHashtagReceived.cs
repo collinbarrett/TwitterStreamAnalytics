@@ -1,6 +1,6 @@
 ﻿namespace TwitterStreamAnalytics.SharedKernel.Domain.Events;
 
-public interface ITweetReceived
+public interface IHashtagReceived
 {
-    string Id { get; }
+    string Tag { get; }
 }

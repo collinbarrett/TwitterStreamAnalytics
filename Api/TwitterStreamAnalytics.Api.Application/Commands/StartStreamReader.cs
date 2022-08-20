@@ -25,9 +25,16 @@ public class StartStreamReaderConsumer : IConsumer<IStartStreamReader>
         {
             _bus.Publish<ITweetReceived>(new
             {
-                args.Tweet.Id,
-                Hashtags = args.Tweet.Entities.Hashtags?.Select(h => h.Tag) ?? new List<string>()
+                args.Tweet.Id
             });
+            if (args.Tweet.Entities.Hashtags is null) return;
+            foreach (var hashtag in args.Tweet.Entities.Hashtags)
+            {
+                _bus.Publish<IHashtagReceived>(new
+                {
+                    hashtag.Tag
+                });
+            }
         });
         return Task.CompletedTask;
     }
