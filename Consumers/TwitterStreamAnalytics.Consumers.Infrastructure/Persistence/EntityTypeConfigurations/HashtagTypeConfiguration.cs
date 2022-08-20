@@ -10,7 +10,7 @@ internal class HashtagTypeConfiguration : IEntityTypeConfiguration<Hashtag>
     {
         builder.HasKey(nameof(Hashtag.Tag));
 
-        // use Count as concurrency token w/message broker retry to ensure accurate count by parallel consumers
+        // use Count as concurrency token w/message bus retry to ensure accurate count by parallel consumers
         builder.Property(h => h.Count).IsConcurrencyToken();
     }
 }

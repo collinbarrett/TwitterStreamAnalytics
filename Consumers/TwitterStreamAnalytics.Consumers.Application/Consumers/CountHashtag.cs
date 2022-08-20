@@ -45,7 +45,7 @@ public class CountHashtag : IConsumer<IHashtagReceived>
             _logger.LogWarning(ex, "Failed to count new occurrence of hashtag {Hashtag}.", hashtag);
             switch (ex)
             {
-                // message broker configured w/retry policy for custom concurrent exceptions
+                // message bus configured w/retry policy for custom concurrent exceptions
                 case ArgumentException:
                     // when a new hashtag has already been added by another consumer instance
                     throw new ConcurrentHashtagAddException(ex.Message, ex);
