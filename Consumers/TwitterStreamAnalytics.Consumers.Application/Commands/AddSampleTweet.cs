@@ -1,6 +1,6 @@
 ﻿using MassTransit;
-using TwitterStreamAnalytics.Consumers.Domain.Aggregates;
 using TwitterStreamAnalytics.Consumers.Domain.Repositories;
+using TwitterStreamAnalytics.SharedKernel.Domain.Aggregates;
 
 namespace TwitterStreamAnalytics.Consumers.Application.Commands;
 

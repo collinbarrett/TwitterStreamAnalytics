@@ -1,4 +1,4 @@
-﻿using TwitterStreamAnalytics.Api.Infrastructure.Persistence.Entities;
+﻿using TwitterStreamAnalytics.SharedKernel.Domain.Aggregates;
 
 namespace TwitterStreamAnalytics.Api.Infrastructure.Persistence.DbContexts;
 

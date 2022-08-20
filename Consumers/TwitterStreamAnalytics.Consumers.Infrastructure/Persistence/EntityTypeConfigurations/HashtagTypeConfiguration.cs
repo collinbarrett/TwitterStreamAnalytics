@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TwitterStreamAnalytics.Consumers.Domain.Aggregates;
+using TwitterStreamAnalytics.SharedKernel.Domain.Aggregates;
 
 namespace TwitterStreamAnalytics.Consumers.Infrastructure.Persistence.EntityTypeConfigurations;
 

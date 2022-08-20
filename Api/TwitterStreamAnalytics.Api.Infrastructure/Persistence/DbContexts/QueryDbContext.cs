@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TwitterStreamAnalytics.Api.Infrastructure.Persistence.Entities;
 using TwitterStreamAnalytics.Api.Infrastructure.Persistence.EntityTypeConfigurations;
+using TwitterStreamAnalytics.SharedKernel.Domain.Aggregates;
 
 namespace TwitterStreamAnalytics.Api.Infrastructure.Persistence.DbContexts;
 
