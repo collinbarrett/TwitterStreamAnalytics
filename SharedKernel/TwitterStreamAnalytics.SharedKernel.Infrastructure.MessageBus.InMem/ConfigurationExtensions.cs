@@ -19,7 +19,13 @@ public static class ConfigurationExtensions
         services.AddMassTransit(bc =>
         {
             bc.AddConsumersFromNamespaceContaining<AddTweet>();
-            bc.UsingInMemory((context, imbc) => imbc.ConfigureEndpoints(context));
+            bc.UsingInMemory((context, imbc) =>
+            {
+                imbc.ConfigureEndpoints(context);
+
+                // TODO: evaluate if retry policy is reasonable
+                imbc.UseMessageRetry(r => r.Immediate(10));
+            });
         });
         services.AddHostedService<BusIgnition>();
     }

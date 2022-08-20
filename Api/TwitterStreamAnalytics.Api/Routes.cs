@@ -10,7 +10,7 @@ internal static class Routes
     // TODO: expose Swagger docs
     public static void AddRoutes(this WebApplication app)
     {
-        //// TODO: refactor routes to RESTful PUT {status: started} or {status: stopped}
+        // TODO: refactor routes to RESTful PUT {status: started} or {status: stopped}
         app.MapPost("/start",
             (IMediator mediator) => mediator.Send<IStartStreamReader>(new { }));
         app.MapPost("/stop",
