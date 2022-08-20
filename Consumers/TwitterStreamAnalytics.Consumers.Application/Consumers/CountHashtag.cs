@@ -1,5 +1,7 @@
 ﻿using MassTransit;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using TwitterStreamAnalytics.Consumers.Application.Exceptions;
 using TwitterStreamAnalytics.Consumers.Domain.Repositories;
 using TwitterStreamAnalytics.SharedKernel.Domain.Aggregates;
 using TwitterStreamAnalytics.SharedKernel.Domain.Events;
@@ -20,6 +22,7 @@ public class CountHashtag : IConsumer<IHashtagReceived>
     public async Task Consume(ConsumeContext<IHashtagReceived> context)
     {
         var hashtag = context.Message.Tag;
+        LogRetryAttempt();
         var existingHashtag = await _repo.FindAsync(hashtag, context.CancellationToken);
         if (existingHashtag is null)
         {
@@ -39,10 +42,29 @@ public class CountHashtag : IConsumer<IHashtagReceived>
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Failed to count new occurrence of hashtag {Hashtag}.", hashtag);
+            _logger.LogWarning(ex, "Failed to count new occurrence of hashtag {Hashtag}.", hashtag);
+            switch (ex)
+            {
+                // message broker configured w/retry policy for custom concurrent exceptions
+                case ArgumentException:
+                    throw new ConcurrentHashtagAddException(ex.Message, ex);
+                case DbUpdateConcurrencyException:
+                    throw new ConcurrentHashtagIncrementException(ex.Message, ex);
 
-            // TODO: configure message broker to retry on concurrency exceptions ArgumentException or DbUpdateConcurrencyException
-            throw;
+                default:
+                    throw;
+            }
+        }
+
+        void LogRetryAttempt()
+        {
+            var retryAttempt = context.GetRetryAttempt();
+            if (retryAttempt > 0)
+            {
+                _logger.LogInformation("Retry {RetryAttempt} to count new occurrence of hashtag {Hashtag}.",
+                    retryAttempt,
+                    hashtag);
+            }
         }
     }
 }

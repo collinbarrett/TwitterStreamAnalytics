@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using TwitterStreamAnalytics.Api.Application.Commands;
 using TwitterStreamAnalytics.Api.Application.Queries;
 using TwitterStreamAnalytics.Consumers.Application.Consumers;
+using TwitterStreamAnalytics.Consumers.Application.Exceptions;
 
 namespace TwitterStreamAnalytics.SharedKernel.Infrastructure.MessageBus.InMem;
 
@@ -21,10 +22,17 @@ public static class ConfigurationExtensions
             bc.AddConsumersFromNamespaceContaining<AddTweet>();
             bc.UsingInMemory((context, imbc) =>
             {
-                imbc.ConfigureEndpoints(context);
-
-                // TODO: evaluate if retry policy is reasonable
-                imbc.UseMessageRetry(r => r.Immediate(10));
+                imbc.ReceiveEndpoint("add-tweet", e => e.ConfigureConsumer<AddTweet>(context));
+                imbc.ReceiveEndpoint("count-hashtag", e =>
+                {
+                    e.ConfigureConsumer<CountHashtag>(context);
+                    e.UseMessageRetry(r =>
+                    {
+                        r.Handle<ConcurrentHashtagAddException>();
+                        r.Handle<ConcurrentHashtagIncrementException>();
+                        r.Immediate(5);
+                    });
+                });
             });
         });
         services.AddHostedService<BusIgnition>();
