@@ -47,8 +47,10 @@ public class CountHashtag : IConsumer<IHashtagReceived>
             {
                 // message broker configured w/retry policy for custom concurrent exceptions
                 case ArgumentException:
+                    // when a new hashtag has already been added by another consumer instance
                     throw new ConcurrentHashtagAddException(ex.Message, ex);
                 case DbUpdateConcurrencyException:
+                    // when an existing hashtag has had its count incremented by another consumer instance
                     throw new ConcurrentHashtagIncrementException(ex.Message, ex);
 
                 default:
