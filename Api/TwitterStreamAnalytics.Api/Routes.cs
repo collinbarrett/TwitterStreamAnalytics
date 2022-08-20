@@ -12,9 +12,11 @@ internal static class Routes
     {
         // TODO: refactor routes to RESTful PUT {status: started} or {status: stopped}
         app.MapPost("/start",
-            (IMediator mediator) => mediator.Send<IStartStreamReader>(new { }));
+            (IMediator mediator, CancellationToken cancellationToken) =>
+                mediator.Send<IStartStreamReader>(new { }, cancellationToken));
         app.MapPost("/stop",
-            (IMediator mediator) => mediator.Send<IStopStreamReader>(new { }));
+            (IMediator mediator, CancellationToken cancellationToken) =>
+                mediator.Send<IStopStreamReader>(new { }, cancellationToken));
 
         app.MapGet("/stats",
             (IRequestClient<IGetStats> mediator, CancellationToken cancellationToken) =>

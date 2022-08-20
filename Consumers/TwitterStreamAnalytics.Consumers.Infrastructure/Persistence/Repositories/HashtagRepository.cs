@@ -13,7 +13,7 @@ internal class HashtagRepository : IHashtagRepository
         _dbContext = dbContext;
     }
 
-    public ValueTask<Hashtag?> FindAsync(string hashtag, CancellationToken cancellationToken)
+    public ValueTask<Hashtag?> FindAsync(string hashtag, CancellationToken cancellationToken = default)
     {
         return _dbContext.Hashtags.FindAsync(new object?[] { hashtag }, cancellationToken);
     }
@@ -23,7 +23,7 @@ internal class HashtagRepository : IHashtagRepository
         _dbContext.Add(hashtag);
     }
 
-    public Task CommitAsync(CancellationToken cancellationToken)
+    public Task CommitAsync(CancellationToken cancellationToken = default)
     {
         return _dbContext.SaveChangesAsync(cancellationToken);
     }

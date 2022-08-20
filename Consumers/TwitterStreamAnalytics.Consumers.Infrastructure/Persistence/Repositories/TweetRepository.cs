@@ -18,7 +18,7 @@ internal class TweetRepository : ITweetRepository
         _dbContext.Tweets.Add(tweet);
     }
 
-    public Task CommitAsync(CancellationToken cancellationToken)
+    public Task CommitAsync(CancellationToken cancellationToken = default)
     {
         return _dbContext.SaveChangesAsync(cancellationToken);
     }
