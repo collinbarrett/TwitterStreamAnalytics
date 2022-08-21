@@ -22,16 +22,19 @@ public class GetStatsConsumer : IConsumer<IGetStats>
 
     public async Task Consume(ConsumeContext<IGetStats> context)
     {
+        var tweetCountAsync = _dbContext.Tweets.CountAsync(context.CancellationToken);
+        var hashtagCountAsync = _dbContext.Hashtags.CountAsync(context.CancellationToken);
+        var topHashtagsAsync = _dbContext.Hashtags
+            .OrderByDescending(h => h.Count)
+            .Take(10)
+            .Select(h => new { h.Tag, h.Count })
+            .ToListAsync(context.CancellationToken);
         await context.RespondAsync<IStats>(new
         {
             _streamReader.IsReadingStream,
-            TweetCount = await _dbContext.Tweets.CountAsync(context.CancellationToken),
-            HashtagCount = await _dbContext.Hashtags.CountAsync(context.CancellationToken),
-            TopHashtags = await _dbContext.Hashtags
-                .OrderByDescending(h => h.Count)
-                .Take(10)
-                .Select(h => new { h.Tag, h.Count })
-                .ToListAsync(context.CancellationToken)
+            TweetCount = await tweetCountAsync,
+            HashtagCount = await hashtagCountAsync,
+            TopHashtags = await topHashtagsAsync
         });
     }
 }
