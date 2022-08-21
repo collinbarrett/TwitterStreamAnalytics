@@ -21,7 +21,7 @@ public class TwitterStreamReaderTests
     }
 
     [Fact]
-    public void Start_ReportIsReadingStream()
+    public void Start_NotReadingStream_ReportIsReadingStream()
     {
         // Arrange
 
@@ -33,7 +33,33 @@ public class TwitterStreamReaderTests
     }
 
     [Fact]
-    public void Stop_ReportIsNotReadingStream()
+    public void Start_AlreadyReadingStream_ReportIsReadingStream()
+    {
+        // Arrange
+        _sut.Start(It.IsAny<EventHandler<TweetV2ReceivedEventArgs>>());
+
+        // Act
+        _sut.Start(It.IsAny<EventHandler<TweetV2ReceivedEventArgs>>());
+
+        // Assert
+        Assert.True(_sut.IsReadingStream);
+    }
+
+    [Fact]
+    public void Stop_ReadingStream_ReportIsNotReadingStream()
+    {
+        // Arrange
+        _sut.Start(It.IsAny<EventHandler<TweetV2ReceivedEventArgs>>());
+
+        // Act
+        _sut.Stop();
+
+        // Assert
+        Assert.False(_sut.IsReadingStream);
+    }
+
+    [Fact]
+    public void Stop_AlreadyNotReadingStream_ReportIsNotReadingStream()
     {
         // Arrange
 
