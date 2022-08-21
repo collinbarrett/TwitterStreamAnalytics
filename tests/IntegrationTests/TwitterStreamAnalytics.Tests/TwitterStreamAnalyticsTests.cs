@@ -5,9 +5,12 @@ using TwitterStreamAnalytics.Api.Application.Queries;
 
 namespace TwitterStreamAnalytics.Tests;
 
-// TODO: resolve ChannelClosedException https://github.com/MassTransit/MassTransit/discussions/3283
+// TODO: resolve ChannelClosedException on dispose https://github.com/MassTransit/MassTransit/discussions/3283
 public class TwitterStreamAnalyticsTests : IClassFixture<WebApplicationFactory<Program>>
 {
+    private const string StatsUrl = "/stats";
+    private const string StartUrl = "/start";
+    private const string StopUrl = "/stop";
     private readonly WebApplicationFactory<Program> _factory;
 
     public TwitterStreamAnalyticsTests(WebApplicationFactory<Program> webApplicationFactory)
@@ -35,11 +38,10 @@ public class TwitterStreamAnalyticsTests : IClassFixture<WebApplicationFactory<P
     public async Task GET_Stats_BeforeStartingStreamReader_ReturnsInitialStats()
     {
         // Arrange
-        const string statsUrl = "/stats";
         var client = _factory.CreateClient();
 
         // Act
-        var response = await client.GetAsync(statsUrl);
+        var response = await client.GetAsync(StatsUrl);
 
         // Assert
         response.EnsureSuccessStatusCode();
@@ -49,8 +51,33 @@ public class TwitterStreamAnalyticsTests : IClassFixture<WebApplicationFactory<P
             IsReadingStream = false,
             TweetCount = 0,
             HashtagCount = 0,
-            TopHashtags = new List<Hashtag>()
+            TopHashtags = new List<IHashtag>()
         };
         actual.Should().BeEquivalentTo(expected);
     }
+
+    [Fact]
+    public async Task POST_Start_BeforeStartingStreamReader_ReturnsIsReadingStream()
+    {
+        // Arrange
+        var client = _factory.CreateClient();
+
+        // Act
+        var response = await client.PostAsync(StartUrl, default);
+
+        // Assert
+        response.EnsureSuccessStatusCode();
+        var statsResponse = await client.GetAsync(StatsUrl);
+        statsResponse.EnsureSuccessStatusCode();
+        var actual = await statsResponse.Content.ReadFromJsonAsync<Stats>();
+        Assert.True(actual?.IsReadingStream);
+    }
+}
+
+internal class Stats : IStats
+{
+    public bool IsReadingStream { get; set; }
+    public int TweetCount { get; set; }
+    public int HashtagCount { get; set; }
+    public IReadOnlyList<IHashtag> TopHashtags { get; set; }
 }

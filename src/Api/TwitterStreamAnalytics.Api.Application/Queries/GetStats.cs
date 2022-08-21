@@ -29,7 +29,7 @@ public class GetStatsConsumer : IConsumer<IGetStats>
             .Take(10)
             .Select(h => new { h.Tag, h.Count })
             .ToListAsync(context.CancellationToken);
-        await context.RespondAsync<Stats>(new
+        await context.RespondAsync<IStats>(new
         {
             _streamReader.IsReadingStream,
             TweetCount = await tweetCountAsync,
@@ -39,16 +39,16 @@ public class GetStatsConsumer : IConsumer<IGetStats>
     }
 }
 
-public record Stats
+public interface IStats
 {
-    public bool IsReadingStream { get; init; }
-    public int TweetCount { get; init; }
-    public int HashtagCount { get; init; }
-    public IReadOnlyList<Hashtag> TopHashtags { get; init; } = new List<Hashtag>();
+    public bool IsReadingStream { get; }
+    public int TweetCount { get; }
+    public int HashtagCount { get; }
+    public IReadOnlyList<IHashtag> TopHashtags { get; }
 }
 
-public record Hashtag
+public interface IHashtag
 {
-    public string Tag { get; init; } = default!;
-    public int Count { get; init; }
+    public string Tag { get; }
+    public int Count { get; }
 }
