@@ -1,7 +1,10 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System.Runtime.CompilerServices;
+using Microsoft.Extensions.Logging;
 using Tweetinvi;
 using Tweetinvi.Events.V2;
 using Tweetinvi.Streaming.V2;
+
+[assembly: InternalsVisibleTo("TwitterStreamAnalytics.Api.Infrastructure.Tests")]
 
 namespace TwitterStreamAnalytics.Api.Infrastructure.TwitterClient;
 
