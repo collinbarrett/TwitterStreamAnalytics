@@ -11,7 +11,7 @@ internal static class Routes
     // TODO: expose Swagger docs in Swagger UI
     public static void AddRoutes(this WebApplication app)
     {
-        // TODO: refactor routes to RESTful PUT {status: started} or {status: stopped}
+        // TODO: combine start/stop routes to RESTful PUT /status w/enum {status: started} or {status: stopped}
 
         app.MapPost("/start", [SwaggerOperation("Starts the Twitter stream reader.")]
             (IMediator mediator, CancellationToken cancellationToken) =>
