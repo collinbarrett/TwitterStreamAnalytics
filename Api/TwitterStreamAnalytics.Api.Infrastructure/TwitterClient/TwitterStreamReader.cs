@@ -17,9 +17,11 @@ internal sealed class TwitterStreamReader : ITwitterStreamReader
         _logger = logger;
     }
 
+    public bool IsReadingStream => _stream != default;
+
     public void Start(EventHandler<TweetV2ReceivedEventArgs> onTweetReceived)
     {
-        if (_stream != default)
+        if (IsReadingStream)
         {
             _logger.LogInformation($"{nameof(ITwitterStreamReader)} already started.");
             return;
@@ -33,13 +35,13 @@ internal sealed class TwitterStreamReader : ITwitterStreamReader
 
     public void Stop()
     {
-        if (_stream == default)
+        if (!IsReadingStream)
         {
             _logger.LogInformation($"{nameof(ITwitterStreamReader)} already stopped.");
             return;
         }
 
-        _stream.StopStream();
+        _stream?.StopStream();
         _stream = default;
         _logger.LogInformation($"{nameof(ITwitterStreamReader)} already stopped.");
     }

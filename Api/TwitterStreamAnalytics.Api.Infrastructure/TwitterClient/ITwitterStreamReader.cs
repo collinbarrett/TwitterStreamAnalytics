@@ -7,6 +7,7 @@ namespace TwitterStreamAnalytics.Api.Infrastructure.TwitterClient;
 /// </summary>
 public interface ITwitterStreamReader : IDisposable
 {
+    bool IsReadingStream { get; }
     void Start(EventHandler<TweetV2ReceivedEventArgs> onTweetReceived);
     void Stop();
 }
