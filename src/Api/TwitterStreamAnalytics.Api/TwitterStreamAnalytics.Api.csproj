@@ -15,7 +15,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\SharedKernel\TwitterStreamAnalytics.SharedKernel.Infrastructure.MessageBus.InMem\TwitterStreamAnalytics.SharedKernel.Infrastructure.MessageBus.InMem.csproj" />
+		<ProjectReference
+			Include="..\..\SharedKernel\TwitterStreamAnalytics.SharedKernel.Infrastructure.MessageBus.InMem\TwitterStreamAnalytics.SharedKernel.Infrastructure.MessageBus.InMem.csproj" />
 	</ItemGroup>
 
 </Project>

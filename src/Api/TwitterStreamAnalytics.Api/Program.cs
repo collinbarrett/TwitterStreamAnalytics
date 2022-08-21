@@ -21,3 +21,9 @@ app.UseHttpsRedirection();
 app.UseSwagger();
 app.UseSwaggerUI();
 app.Run();
+
+// HACK: to access from integration tests
+// https://stackoverflow.com/a/69483450/2343739
+public partial class Program
+{
+}

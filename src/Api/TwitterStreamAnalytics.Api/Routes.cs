@@ -22,6 +22,6 @@ internal static class Routes
 
         app.MapGet("/stats", [SwaggerOperation("Gets the tweet stats.")]
             (IRequestClient<IGetStats> mediator, CancellationToken cancellationToken) =>
-                mediator.GetResponse<IStats>(new { }, cancellationToken));
+                mediator.GetResponse<Stats>(new { }, cancellationToken));
     }
 }

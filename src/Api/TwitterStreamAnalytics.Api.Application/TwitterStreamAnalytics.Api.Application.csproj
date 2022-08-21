@@ -7,7 +7,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\TwitterStreamAnalytics.Api.Infrastructure\TwitterStreamAnalytics.Api.Infrastructure.csproj" />
+		<ProjectReference
+			Include="..\TwitterStreamAnalytics.Api.Infrastructure\TwitterStreamAnalytics.Api.Infrastructure.csproj" />
 	</ItemGroup>
 
 </Project>

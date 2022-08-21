@@ -42,6 +42,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterStreamAnalytics.Api.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{60FC1682-FD98-4242-8F58-011C1A89A514}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IntegrationTests", "IntegrationTests", "{FF9DF170-65E1-40DE-AF03-98FF615B3438}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterStreamAnalytics.Tests", "tests\IntegrationTests\TwitterStreamAnalytics.Tests\TwitterStreamAnalytics.Tests.csproj", "{DB1E266F-BBF8-4DDC-86D4-302933831AD9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -88,6 +92,10 @@ Global
 		{5E0BA4E6-DDAF-4A68-95BB-BBEE450AD9A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E0BA4E6-DDAF-4A68-95BB-BBEE450AD9A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E0BA4E6-DDAF-4A68-95BB-BBEE450AD9A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB1E266F-BBF8-4DDC-86D4-302933831AD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB1E266F-BBF8-4DDC-86D4-302933831AD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB1E266F-BBF8-4DDC-86D4-302933831AD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB1E266F-BBF8-4DDC-86D4-302933831AD9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -108,6 +116,8 @@ Global
 		{AEBE9B3D-9C4C-4DF9-9814-1C0E273A0A78} = {60FC1682-FD98-4242-8F58-011C1A89A514}
 		{5E0BA4E6-DDAF-4A68-95BB-BBEE450AD9A9} = {AEBE9B3D-9C4C-4DF9-9814-1C0E273A0A78}
 		{60FC1682-FD98-4242-8F58-011C1A89A514} = {FC9B217F-3640-4094-9469-0118C59717AF}
+		{FF9DF170-65E1-40DE-AF03-98FF615B3438} = {FC9B217F-3640-4094-9469-0118C59717AF}
+		{DB1E266F-BBF8-4DDC-86D4-302933831AD9} = {FF9DF170-65E1-40DE-AF03-98FF615B3438}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5CE718B4-43E2-4571-9798-68A7C691D8E1}
