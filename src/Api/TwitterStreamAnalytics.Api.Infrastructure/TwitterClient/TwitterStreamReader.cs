@@ -46,7 +46,7 @@ internal sealed class TwitterStreamReader : ITwitterStreamReader
 
         _stream?.StopStream();
         _stream = default;
-        _logger.LogInformation($"{nameof(ITwitterStreamReader)} already stopped.");
+        _logger.LogInformation($"{nameof(ITwitterStreamReader)} stopped.");
     }
 
     public void Dispose()
