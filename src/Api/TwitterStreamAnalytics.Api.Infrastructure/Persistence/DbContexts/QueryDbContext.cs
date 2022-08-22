@@ -10,7 +10,7 @@ internal class QueryDbContext : DbContext
     {
     }
 
-    // TODO: do not share entity models between Api and Consumers https://github.com/dotnet/efcore/issues/28778#issuecomment-1221324545
+    // TODO: do not share entity models between Api and Consumers (blocked by https://github.com/dotnet/efcore/issues/28778#issuecomment-1221324545)
     public DbSet<Hashtag> Hashtags => Set<Hashtag>();
     public DbSet<Tweet> Tweets => Set<Tweet>();
 

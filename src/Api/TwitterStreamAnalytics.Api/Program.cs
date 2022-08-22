@@ -22,8 +22,8 @@ app.UseSwagger();
 app.UseSwaggerUI();
 app.Run();
 
-// HACK: to access from integration tests
-// https://stackoverflow.com/a/69483450/2343739
+// to access from integration tests
+// https://docs.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-6.0#basic-tests-with-the-default-webapplicationfactory
 public partial class Program
 {
 }

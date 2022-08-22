@@ -36,7 +36,7 @@ internal class BusIgnition : IHostedService
         }
         catch (ChannelClosedException ex)
         {
-            // TODO: fix vs swallow ChannelClosedException on dispose during integration tests https://github.com/MassTransit/MassTransit/discussions/3283
+            // TODO: fix vs swallow ChannelClosedException on dispose during integration tests (ref https://github.com/MassTransit/MassTransit/discussions/3283)
             _logger.LogError(ex, $"{nameof(ChannelClosedException)} occurred on disposal of message bus.");
         }
     }
