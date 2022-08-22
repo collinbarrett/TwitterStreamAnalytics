@@ -25,7 +25,7 @@ public class StartStreamReaderConsumer : IConsumer<IStartStreamReader>
         {
             _bus.Publish<ITweetReceived>(new
             {
-                args.Tweet.Id
+                Id = ulong.Parse(args.Tweet.Id)
             });
             if (args.Tweet.Entities.Hashtags is null) return;
             foreach (var hashtag in args.Tweet.Entities.Hashtags)

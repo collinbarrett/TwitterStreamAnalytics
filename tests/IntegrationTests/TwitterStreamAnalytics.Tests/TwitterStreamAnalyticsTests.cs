@@ -137,7 +137,7 @@ public class TwitterStreamAnalyticsTests : IClassFixture<WebApplicationFactory<P
         {
             Tweet = new TweetV2
             {
-                Id = long.MaxValue.ToString(),
+                Id = ulong.MaxValue.ToString(),
                 Entities = new TweetEntitiesV2
                 {
                     Hashtags = new[]

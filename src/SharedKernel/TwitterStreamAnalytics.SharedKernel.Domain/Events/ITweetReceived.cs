@@ -2,5 +2,5 @@
 
 public interface ITweetReceived
 {
-    string Id { get; }
+    ulong Id { get; }
 }
