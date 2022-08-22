@@ -55,7 +55,7 @@ public class TwitterStreamAnalyticsTests : IClassFixture<WebApplicationFactory<P
     }
 
     [Fact]
-    public async Task POST_Start_BeforeStartingStreamReader_ReturnsIsReadingStream()
+    public async Task POST_Start_BeforeStartingStreamReader_StartsReadingStream()
     {
         // Arrange
         var client = _factory.CreateClient();
@@ -72,7 +72,7 @@ public class TwitterStreamAnalyticsTests : IClassFixture<WebApplicationFactory<P
     }
 
     [Fact]
-    public async Task POST_Stop_AfterStartingStreamReader_ReturnsIsNotReadingStream()
+    public async Task POST_Stop_AfterStartingStreamReader_StopsReadingStream()
     {
         // Arrange
         var client = _factory.CreateClient();
