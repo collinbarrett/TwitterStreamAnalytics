@@ -1,4 +1,5 @@
-﻿using MassTransit;
+﻿using System.Threading.Channels;
+using MassTransit;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
@@ -25,9 +26,18 @@ internal class BusIgnition : IHostedService
         return _busControl.StartAsync(cancellationToken);
     }
 
-    public Task StopAsync(CancellationToken cancellationToken)
+    public async Task StopAsync(CancellationToken cancellationToken)
     {
         _logger.LogDebug("Stopping message bus.");
-        return _busControl.StopAsync(cancellationToken);
+
+        try
+        {
+            await _busControl.StopAsync(cancellationToken);
+        }
+        catch (ChannelClosedException ex)
+        {
+            // TODO: fix vs swallow ChannelClosedException on dispose during integration tests https://github.com/MassTransit/MassTransit/discussions/3283
+            _logger.LogError(ex, $"{nameof(ChannelClosedException)} occurred on disposal of message bus.");
+        }
     }
 }

@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace TwitterStreamAnalytics.Tests;
 
-// TODO: resolve ChannelClosedException on dispose https://github.com/MassTransit/MassTransit/discussions/3283
 public class TwitterStreamAnalyticsTests : IClassFixture<WebApplicationFactory<Program>>
 {
     private const string StatsUrl = "/stats";
