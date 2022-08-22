@@ -61,6 +61,7 @@ public class TwitterStreamAnalyticsTests : IClassFixture<WebApplicationFactory<P
         actual.Should().BeEquivalentTo(expected);
     }
 
+    // TODO: fix batch test run seemingly sharing contexts (ideas here did not seem to fix: https://github.com/dotnet/aspnetcore/issues/1541#issuecomment-224142104)
     [Fact]
     public async Task POST_Start_BeforeStartingStreamReader_StartsReadingStream()
     {
