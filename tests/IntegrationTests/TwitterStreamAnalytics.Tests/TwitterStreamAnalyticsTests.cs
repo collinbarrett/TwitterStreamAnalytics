@@ -1,7 +1,6 @@
 using System.Net.Http.Json;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
-using TwitterStreamAnalytics.Api.Application.Queries;
 
 namespace TwitterStreamAnalytics.Tests;
 
@@ -51,7 +50,7 @@ public class TwitterStreamAnalyticsTests : IClassFixture<WebApplicationFactory<P
             IsReadingStream = false,
             TweetCount = 0,
             HashtagCount = 0,
-            TopHashtags = new List<IHashtag>()
+            TopHashtags = new List<Hashtag>()
         };
         actual.Should().BeEquivalentTo(expected);
     }
@@ -63,21 +62,52 @@ public class TwitterStreamAnalyticsTests : IClassFixture<WebApplicationFactory<P
         var client = _factory.CreateClient();
 
         // Act
-        var response = await client.PostAsync(StartUrl, default);
+        var startResponse = await client.PostAsync(StartUrl, default);
 
         // Assert
-        response.EnsureSuccessStatusCode();
+        startResponse.EnsureSuccessStatusCode();
         var statsResponse = await client.GetAsync(StatsUrl);
         statsResponse.EnsureSuccessStatusCode();
         var actual = await statsResponse.Content.ReadFromJsonAsync<Stats>();
         Assert.True(actual?.IsReadingStream);
     }
-}
 
-internal class Stats : IStats
-{
-    public bool IsReadingStream { get; set; }
-    public int TweetCount { get; set; }
-    public int HashtagCount { get; set; }
-    public IReadOnlyList<IHashtag> TopHashtags { get; set; }
+    [Fact]
+    public async Task POST_Stop_AfterStartingStreamReader_ReturnsIsNotReadingStream()
+    {
+        // Arrange
+        var client = _factory.CreateClient();
+        var startResponse = await client.PostAsync(StartUrl, default);
+        startResponse.EnsureSuccessStatusCode();
+
+        // Act
+        var stopResponse = await client.PostAsync(StopUrl, default);
+
+        // Assert
+        stopResponse.EnsureSuccessStatusCode();
+        var statsResponse = await client.GetAsync(StatsUrl);
+        statsResponse.EnsureSuccessStatusCode();
+        var actual = await statsResponse.Content.ReadFromJsonAsync<Stats>();
+        Assert.False(actual?.IsReadingStream);
+    }
+
+    [Fact]
+    public async Task GET_Stats_AfterStartingStreamReader_ReturnsNonZeroStats()
+    {
+        // Arrange
+        var client = _factory.CreateClient();
+        var startResponse = await client.PostAsync(StartUrl, default);
+        startResponse.EnsureSuccessStatusCode();
+        Thread.Sleep(10000);
+
+        // Act
+        var statsResponse = await client.GetAsync(StatsUrl);
+
+        // Assert
+        statsResponse.EnsureSuccessStatusCode();
+        var actual = await statsResponse.Content.ReadFromJsonAsync<Stats>();
+        Assert.True(actual?.TweetCount > 0);
+        Assert.True(actual.HashtagCount > 0);
+        Assert.True(actual.TopHashtags.Count > 0);
+    }
 }
