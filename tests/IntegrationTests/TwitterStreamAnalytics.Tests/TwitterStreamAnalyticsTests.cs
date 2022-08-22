@@ -55,7 +55,7 @@ public class TwitterStreamAnalyticsTests : IClassFixture<WebApplicationFactory<P
         {
             IsReadingStream = false,
             TweetCount = 0,
-            HashtagCount = 0,
+            UniqueHashtagCount = 0,
             TopHashtags = new List<Hashtag>()
         };
         actual.Should().BeEquivalentTo(expected);
@@ -114,7 +114,7 @@ public class TwitterStreamAnalyticsTests : IClassFixture<WebApplicationFactory<P
         statsResponse.EnsureSuccessStatusCode();
         var actual = await statsResponse.Content.ReadFromJsonAsync<Stats>();
         Assert.True(actual?.TweetCount > 0);
-        Assert.True(actual.HashtagCount > 0);
+        Assert.True(actual.UniqueHashtagCount > 0);
         Assert.True(actual.TopHashtags.Count > 0);
     }
 
@@ -167,7 +167,7 @@ public class TwitterStreamAnalyticsTests : IClassFixture<WebApplicationFactory<P
         {
             IsReadingStream = true,
             TweetCount = 1,
-            HashtagCount = 1,
+            UniqueHashtagCount = 1,
             TopHashtags = new List<Hashtag>
             {
                 new()

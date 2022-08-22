@@ -6,7 +6,7 @@ internal class Stats //: IStats
 {
     public bool IsReadingStream { get; init; }
     public int TweetCount { get; init; }
-    public int HashtagCount { get; init; }
+    public int UniqueHashtagCount { get; init; }
     public List<Hashtag> TopHashtags { get; init; } = new();
 }
 

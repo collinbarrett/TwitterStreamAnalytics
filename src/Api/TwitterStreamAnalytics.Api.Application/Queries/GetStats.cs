@@ -33,7 +33,7 @@ public class GetStatsConsumer : IConsumer<IGetStats>
         {
             _streamReader.IsReadingStream,
             TweetCount = await tweetCountAsync,
-            HashtagCount = await hashtagCountAsync,
+            UniqueHashtagCount = await hashtagCountAsync,
             TopHashtags = await topHashtagsAsync
         });
     }
@@ -43,7 +43,7 @@ public interface IStats
 {
     public bool IsReadingStream { get; }
     public int TweetCount { get; }
-    public int HashtagCount { get; }
+    public int UniqueHashtagCount { get; }
     public IReadOnlyList<IHashtag> TopHashtags { get; }
 }
 
